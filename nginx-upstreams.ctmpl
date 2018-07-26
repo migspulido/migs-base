@@ -1,0 +1,5 @@
+upstream migs-base {
+    {{range service "migs-base" "any"}}
+    server {{.Address}}:{{.Port}};
+    {{end}}
+}

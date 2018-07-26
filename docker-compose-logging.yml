@@ -1,0 +1,17 @@
+app:
+  image: migspulido/migs-base
+  ports:
+    - 8080
+  links:
+    - db:db
+  environment:
+    - SERVICE_NAME=migs-base
+  log_driver: syslog
+  log_opt:
+    tag: migs-base
+
+db:
+  image: mongo
+  log_driver: syslog
+  log_opt:
+    tag: migs-base

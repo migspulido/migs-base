@@ -1,0 +1,27 @@
+app:
+  image: 10.100.198.200:5000/migs-base
+  ports:
+    - 8080
+  net: migs-base
+  environment:
+    - SERVICE_NAME=migs-base
+    - DB_HOST=migs-base-db
+
+app-blue:
+  environment:
+    - SERVICE_NAME=migs-base-blue
+  extends:
+    service: app
+
+app-green:
+  environment:
+    - SERVICE_NAME=migs-base-green
+  extends:
+    service: app
+
+db:
+  container_name: migs-base-db
+  image: mongo
+  net: migs-base
+  environment:
+    - SERVICE_NAME=migs-base-db

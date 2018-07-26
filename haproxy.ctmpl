@@ -1,0 +1,11 @@
+
+frontend migs-base-fe
+    bind *:80
+    option http-server-close
+    acl url_migs-base path_beg /api/v1/migs
+    use_backend migs-base-be if url_migs-base
+
+backend migs-base-be
+    {{range service "migs-base" "any"}}
+    server {{.Node}}_{{.Port}} {{.Address}}:{{.Port}} check
+    {{end}}
