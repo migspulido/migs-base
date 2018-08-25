@@ -7,7 +7,7 @@ import scala.util.Properties._
 class ServiceInteg extends Specification {
 
   val domain = envOrElse("DOMAIN", "http://localhost:8080")
-  val uri = s"$domain/api/v1/books"
+  val uri = s"$domain/api/v1/migs"
 
   s"GET $uri" should {
 
