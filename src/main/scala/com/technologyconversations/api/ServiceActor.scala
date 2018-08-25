@@ -24,8 +24,8 @@ class ServiceActor extends Actor with ServiceRoute with StaticRoute {
   val address = envOrElse("DB_PORT_27017_TCP_ADDR", envOrElse("DB_HOST", "localhost"))
   val port = envOrElse("DB_PORT_27017_PORT", "27017")
   val client = MongoClient(MongoClientURI(s"mongodb://$address:$port/"))
-  val db = client(envOrElse("DB_DBNAME", "books"))
-  val collection = db(envOrElse("DB_COLLECTION", "books"))
+  val db = client(envOrElse("DB_DBNAME", "migs"))
+  val collection = db(envOrElse("DB_COLLECTION", "migs"))
 
   def actorRefFactory = context
   def receive = runRoute {
@@ -49,7 +49,7 @@ trait ServiceRoute extends HttpService with DefaultJsonProtocol {
   implicit val booksFormat = jsonFormat4(Book)
   val collection: MongoCollection
 
-  val serviceRoute = pathPrefix("api" / "v1" / "books") {
+  val serviceRoute = pathPrefix("api" / "v1" / "migs") {
     path("_id" / IntNumber) { id =>
       get {
         complete(
