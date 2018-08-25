@@ -21,9 +21,9 @@ import spray.httpx.SprayJsonSupport._
 class ServiceSpec extends Specification with Specs2RouteTest with HttpService with ServiceRoute with StaticRoute with BeforeExample {
 
   val client = MongoClient("localhost", 27017)
-  val db = client("books")
-  val collection = db("books")
-  val apiUri = "/api/v1/books"
+  val db = client("migs")
+  val collection = db("migs")
+  val apiUri = "/api/v1/migs"
   val staticUri = "/test.html"
   val bookId = 1234
 
